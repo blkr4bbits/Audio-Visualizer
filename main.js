@@ -8,18 +8,17 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setAnimationLoop( animate );
 document.body.appendChild( renderer.domElement );
 
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-const cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+const geometry = new THREE.SphereGeometry( 1, 32, 16 ); 
+const material = new THREE.MeshBasicMaterial( { color: 0xffff000 } );
+const sphere = new THREE.Mesh( geometry, material );
+scene.add( sphere );
 
 camera.position.z = 5;
 
 function animate() {
-
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
+  // Rotate the sphere
+  sphere.rotation.x += 0.01;
+  sphere.rotation.y += 0.01;
 
   renderer.render( scene, camera );
-
 }
