@@ -15,36 +15,45 @@ scene.add( sphere );
 
 camera.position.z = 5;
 
-function animate() {
-  // Rotate the sphere
-  sphere.rotation.x += 0.01;
-  sphere.rotation.y += 0.01;
-
-  renderer.render( scene, camera );
-}
-
-//Creates Audio Analyser and adds it to the camera
-
 const listener = new THREE.AudioListener();
-camera.add ( listener ); 
+camera.add ( listener );
 
-// creates audio source
 
 const sound = new THREE.Audio(listener);
+camera.add(listener);
 
 const audioLoader = new THREE.AudioLoader();
-audopLoader.load('sounds/ambient.ogg', function(buffer){
+audioLoader.load('sounds/ambient.ogg', function(buffer){
   sound.setBuffer(buffer);
   sound.setLoop(true);
   sound.setVolume(0.5);
   sound.play();
 });
 
-const analyser = new THREE.AudioAnalyser( sound, 32 );
+const analyser = new THREE.AudioAnalyser(sound, 32);
+
+function animate() {
+  // Rotate the sphere
+  sphere.rotation.x += 0.01;
+  sphere.rotation.y += 0.01;
+
+  //gets frequency data every frame
+
+  const avgFrequency = analyser.getAverageFrequency();
+  console.log(avgFrequency);
+
+  renderer.render( scene, camera );
+}
+
 
 // gets the average frequency of the sound
 const data = analyser.getAverageFrequency();
 
+
+
+
+
+/*
 //! sets up the anayliser to gather the frequency data from the mp3 file
 
 const setupAudioContext = () => {
@@ -65,3 +74,4 @@ const render = () => {
 };
 
 render();
+*/
