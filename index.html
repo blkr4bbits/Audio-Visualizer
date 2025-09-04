@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>My first three.js app</title>
+    <title>Audio Visualizer</title>
     <style>
       body { margin: 0; }
     </style>
@@ -11,3 +11,17 @@
     <script type="module" src="/main.js"></script>
   </body>
 </html>
+
+<!-- creates a div for the frequency data (this is a demo to test for frequency data display)-->
+
+<div className = "absolute bottom-2 right-2">
+  <audio
+  id = "myAudio"
+  src = "C:\Users\Joshua Green\OneDrive\Desktop\Audio-Visualizer\Audio-Visualizer\fur elise (Ludwig van Beethoven).mp3"
+  className = "w-80"
+  controls
+  autoplay
+  onPlay={play}
+  >
+</audio>
+</div>
